@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecniservi | Tienda Virtual de Refrigeración</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">❄️</span>
+                <div>
+                    <h1>TECNISERVI</h1>
+                    <small>Soluciones en Refrigeración</small>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="#inicio">Inicio</a>
+                <a href="#catalogo">Catálogo</a>
+                <a href="historia.html">Nosotros</a>
+                <a href="#carrito" class="btn-nav-carrito">
+                    🛒 Carrito (<span id="contador-carrito">0</span>)
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Carrusel Principal de Referencia Industrial / Refrigeración -->
+    <section id="inicio" class="hero-carousel" aria-label="Carrusel principal de Tecniservi">
+        <div class="carousel-slides" id="carousel-slides">
+            <article class="carousel-slide active">
+                <img src="imagen/instalacion1..jpeg" alt="Montaje e instalación de sistemas de refrigeración">
+                <div class="carousel-overlay">
+                    <div class="container carousel-caption">
+                        <span class="badge-sector">REFRIGERACIÓN INDUSTRIAL Y COMERCIAL</span>
+                        <h2>Equipos, Repuestos e Insumos de Alto Rendimiento</h2>
+                        <p>Soluciones integrales para cuartos fríos, unidades condensadoras y climatización con respaldo técnico garantizado.</p>
+                        <div class="carousel-actions">
+                            <a href="#catalogo" class="btn-principal">Explorar Catálogo</a>
+                            <a href="historia.html" class="btn-secundario">Conoce Tecniservi</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carousel-slide">
+                <img src="imagen/mtto.jpg" alt="Mantenimiento preventivo y diagnóstico HVAC">
+                <div class="carousel-overlay">
+                    <div class="container carousel-caption">
+                        <span class="badge-sector">MANTENIMIENTO Y DIAGNÓSTICO</span>
+                        <h2>Gases Refrigerantes, Compresores y Controles Digitales</h2>
+                        <p>Abastécete con insumos certificados, válvulas de expansión, filtros secadores y herramientas de precisión.</p>
+                        <div class="carousel-actions">
+                            <a href="#catalogo" class="btn-principal">Ver Repuestos</a>
+                            <a href="#carrito" class="btn-secundario">Ir al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="carousel-slide">
+                <img src="imagen/m1.jpeg" alt="Soporte técnico especializado Tecniservi">
+                <div class="carousel-overlay">
+                    <div class="container carousel-caption">
+                        <span class="badge-sector">RESPALDO TÉCNICO ESPECIALIZADO</span>
+                        <h2>Continuidad Operativa para tu Cadena de Frío</h2>
+                        <p>Cotiza y simula tu pedido en pesos colombianos con entrega ágil y atención directa.</p>
+                        <div class="carousel-actions">
+                            <a href="#catalogo" class="btn-principal">Comprar Ahora</a>
+                            <a href="#carrito" class="btn-secundario">Simular Pedido</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <button type="button" class="carousel-btn prev" id="btn-prev-slide" aria-label="Diapositiva anterior">❮</button>
+        <button type="button" class="carousel-btn next" id="btn-next-slide" aria-label="Siguiente diapositiva">❯</button>
+
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Indicadores del carrusel">
+            <button type="button" class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button type="button" class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button type="button" class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="catalogo" class="seccion">
+            <h2 class="titulo-seccion">Catálogo de Productos</h2>
+            <p class="subtitulo-seccion">Selecciona los equipos o repuestos y agrégalos a tu carrito de compras.</p>
+            <div id="grid-productos" class="grid-productos"></div>
+        </section>
+
+        <section id="carrito" class="seccion seccion-carrito">
+            <h2 class="titulo-seccion">Carrito de Compras</h2>
+            <div class="carrito-layout">
+                <div class="carrito-lista-container">
+                    <div id="mensaje-carrito-vacio" class="alerta-vacio">
+                        Tu carrito de compras está vacío. ¡Explora nuestro catálogo arriba!
+                    </div>
+                    <table class="tabla-carrito" id="tabla-carrito">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio Unit.</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-carrito"></tbody>
+                    </table>
+                    <div class="carrito-acciones-top">
+                        <button type="button" id="btn-vaciar-carrito" class="btn-peligro">🗑️ Vaciar Carrito</button>
+                    </div>
+                </div>
+
+                <aside class="carrito-resumen">
+                    <h3>Resumen del Pedido</h3>
+                    <div class="resumen-detalle">
+                        <p>Unidades totales: <strong id="total-unidades">0</strong></p>
+                        <p>Subtotal productos: <strong id="subtotal-general">$0 COP</strong></p>
+                        <p>Costo de envío: <strong id="costo-envio">$0 COP</strong></p>
+                        <hr>
+                        <p class="total-pagar">Total a pagar: <strong id="total-pagar">$0 COP</strong></p>
+                    </div>
+
+                    <form id="form-checkout" class="form-checkout">
+                        <h4>Datos de Entrega</h4>
+                        <div class="campo">
+                            <label for="nombre">Nombre completo *</label>
+                            <input type="text" id="nombre" required placeholder="Ej: Carlos Pérez">
+                        </div>
+                        <div class="campo">
+                            <label for="correo">Correo electrónico *</label>
+                            <input type="email" id="correo" required placeholder="carlos@correo.com">
+                        </div>
+                        <div class="campo">
+                            <label for="telefono">Teléfono de contacto *</label>
+                            <input type="tel" id="telefono" required placeholder="Ej: 300 123 4567">
+                        </div>
+                        <div class="campo">
+                            <label for="direccion">Dirección de entrega *</label>
+                            <input type="text" id="direccion" required placeholder="Calle, Carrera, Ciudad">
+                        </div>
+                        <button type="submit" id="btn-finalizar" class="btn-confirmar">Finalizar Compra</button>
+                    </form>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-confirmacion" class="modal oculto">
+        <div class="modal-contenido">
+            <span class="icono-exito">✅</span>
+            <h3>¡Pedido Confirmado!</h3>
+            <p id="texto-confirmacion"></p>
+            <button type="button" id="btn-cerrar-modal" class="btn-principal">Aceptar</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>TECNISERVI S.A.S</h4>
+                <p>Especialistas en refrigeración comercial, industrial y aire acondicionado.</p>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <p>📍 Barranquilla, Colombia</p>
+                <p>📞 +57 300 000 0000</p>
+                <p>✉️ ventas@tecniservi.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tecniservi - Proyecto Final Programación Web | Universidad Libre</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
